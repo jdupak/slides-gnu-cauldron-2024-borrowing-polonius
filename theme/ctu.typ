@@ -5,6 +5,19 @@
   text: rgb("#000000"),
 )
 
+
+#let light(content) = {
+  text(fill: luma(40%), content)
+}
+
+#let accent(content) = {
+  text(fill: theme.accent, content)
+}
+
+#let imp(content) = {
+  text(fill: red, content)
+}
+
 #let ctu-theme(
   aspect-ratio: "4-3",
   footer: [],
@@ -58,6 +71,11 @@
   centered-slide(body)
 }
 
+#let section(body) = {
+  set text(fill: theme.accent, size: 1.25em)
+  centered-slide(body)
+}
+
 #let slide(body) = {
   master-slide({
     set text(
@@ -69,16 +87,31 @@
   })
 }
 
+#let slide-big(heading, middle, bottom) = {
+  slide[
+    #set align(center+horizon)
+    #set text(size: 1.25em)
+    
+    #heading
+    #set text(size: 1.5em, weight: "bold")
+    #middle
+    #v(50pt)
+    #set text(size: 0.5em)
+    #bottom
+  ]
+}
+
 #let notes(body) = { pdfpc.speaker-note(body) }
 
-   #let code(lines, block) = {
-   show raw: it => stack(..it.lines.map(line =>
-    box(
-    width: 100%,
-    height: 1.25em,
-    inset: 0.25em,
-    align(horizon, stack(if lines.contains(line.number) { line.body } else { strike(stroke: rgb(255, 255, 255, 70%) + 1.25em, line.body) }
-    )))))
+#let code(lines, block) = {
+  set text(size: 1.5em) 
+     show raw: it => stack(..it.lines.map(line =>
+      box(
+      width: 100%,
+      height: 1.25em,
+      inset: 0.25em,
+      align(horizon, stack(if lines.contains(line.number) { line.body } else { strike(stroke: rgb(255, 255, 255, 50%) + 1.25em, line.body) }
+      )))))
 
    text(size: 0.75em, font: "Roboto Mono")[#block]
   }
