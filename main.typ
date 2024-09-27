@@ -2,7 +2,7 @@
 #import "@preview/fletcher:0.3.0" as fletcher: node, edge
 #import "theme/ctu.typ": *
 
-#show: ctu-theme.with()
+#show: ctu-theme.with(aspect-ratio: "4-3")
 
 
 #title-slide[
@@ -393,7 +393,7 @@
 ][]
 
 #slide[
-  = Lexical borrow checker
+  == Lexical borrow checker
 
   #set text(size: 1em)
 
@@ -460,19 +460,10 @@
       ```
   ]
 
-  #notes(
-    ```md
-    The borrow would tie the valididy of a reference to the lexical scope of local variables. In this example we have a vector and we create a reference to it inside the call expression to the function capitalize. This reference is valid only for the duration of the call. It is no longer valid on the next line, where we try to push to the vector, thus implicitly creating a mutable reference to it.
-
-    However if we perform a simple refactoring and move the reference to a local variable. The borrow checker will start screming at us. The reference is now valid for the whole function and we are trying to mutate the vector while it is borrowed. The variable is not alive after the call to capitalize, but the borrow checker has no way to express that.
-
-    In this case we can save ourselves by introducing a new scope. But that is not always possible. Lets introduce some control flow.
-    ```
-  )
 ]
 
 #slide[
-  = Lexical borrow checker
+  == Lexical borrow checker
 
   #set text(size: .9em)
 
@@ -494,13 +485,6 @@
   #only(1)[#code((1,2,3,4,5,6,7,8,9,10,11,12), c)]
 
   #only(2)[#code((7,8,9), c)]
-
-  #notes(
-    ```md
-    So in this case we have a hashtable and take a different action based on wheather the key is present in the map. If it is, we process the value, if not, we insert a default value. I think it is quite obvious that no scope tricks can save us. We need to differentiate different control flow paths.
-    ```
-  )
-
 ]
 
 #slide-big[
@@ -510,7 +494,7 @@
 ][]
 
 #slide[
-  = Non-lexical lifetimes (NLL)
+  == Non-lexical lifetimes (NLL)
 
   #set text(size: 1em)
 
@@ -584,7 +568,7 @@
 ]
 
 #slide[
-  = Breaking NLL
+  == Breaking NLL
   
   #grid(columns: (3fr, 1fr), column-gutter: -100pt)[
     #let c = ```rust
