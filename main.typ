@@ -1,5 +1,5 @@
-#import "@preview/polylux:0.3.1": *
-#import "@preview/fletcher:0.3.0" as fletcher: node, edge
+#import "@preview/polylux:0.4.0": *
+#import "@preview/fletcher:0.5.6" as fletcher: node, edge
 #import "theme/ctu.typ": *
 
 #show: ctu-theme.with(aspect-ratio: "4-3")

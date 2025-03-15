@@ -1,4 +1,6 @@
-#import "@preview/polylux:0.3.1": *
+#import "@preview/polylux:0.4.0": *
+
+#let polylux-slide = slide
 
 #let theme = (
   accent: rgb("#F74C00"),
@@ -43,7 +45,7 @@
   show heading.where(level: 3): set block(below: 1em)
   show heading.where(level: 1): set block(below: 1em)
   show heading: set text(fill: theme.accent)
-  set outline(target: heading.where(level: 1), title: none, fill: none)
+  set outline(target: heading.where(level: 1), title: none)
   show outline.entry: it => it.body
   show outline: it => block(inset: (x: 1em), it)
 
@@ -101,7 +103,7 @@
   ]
 }
 
-#let notes(body) = { pdfpc.speaker-note(body) }
+#let notes(body) = { toolbox.pdfpc.speaker-note(body) }
 
 #let code(lines, block) = {
   set text(size: 1.5em) 
